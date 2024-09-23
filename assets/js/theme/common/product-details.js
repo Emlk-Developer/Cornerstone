@@ -238,7 +238,7 @@ export default class ProductDetails extends ProductDetailsBase {
 
     createStickyCartBtn() {
         $(window).on('scroll load resize', () => {
-            const addToCartBtn = document.querySelector('[id^="form-action-addToCart"]');
+            const addToCartBtn = document.querySelector('.form-action-addToCart');
             const price = document.querySelector('[data-product-price-without-tax]');
             
             if (addToCartBtn) {
