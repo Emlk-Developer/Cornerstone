@@ -230,7 +230,7 @@ export default function collapsibleFactory(selector = `[data-${PLUGIN_KEY}]`, ov
         const $toggle = $(element);
         const instanceKey = `${PLUGIN_KEY}Instance`;
         const cachedCollapsible = $toggle.data(instanceKey);
-
+        
         if (cachedCollapsible instanceof Collapsible) {
             return cachedCollapsible;
         }

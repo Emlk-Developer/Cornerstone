@@ -1,7 +1,43 @@
 {{#if product.description}}
-    <p class="productView-title">{{lang 'products.description'}}</p>
-    <div class="productView-description" data-event-type="product">
+<a href="#productViewDecription" class="toggleLink is-open productView-description-accordion" data-collapsible>
+    <h3 class="productView-accordian-title">{{lang 'products.description'}}</h3>
+    <svg><use href="#icon-add"></use></svg>
+</a >
+    <div id="productViewDecription" aria-hidden="false" class="toggle-content is-open description-accordian productView-description" data-event-type="product">
         {{{product.description}}}
+    </div>
+{{/if}}
+{{#if product.custom_fields}}
+<a href="#productViewSpecification" class="toggleLink is-open productView-description-accordion" data-collapsible>
+    <h3 class="productView-accordian-title">{{lang 'products.specification'}}</h3>
+    <svg><use href="#icon-add"></use></svg>
+</a>
+    <div id="productViewSpecification" aria-hidden="false" class="toggle-content is-open description-accordian productView-description" >
+        <table>
+            {{#each product.custom_fields}}
+                {{#startsWith "spec_" name}}
+                <tr>
+                    <th>{{last (split name "spec_") }}</th><td>{{{value}}}</td> 
+                </tr>
+                {{/startsWith}}
+            {{/each}}
+        </table>
+    </div>
+    <a href="#productViewDataSheets" class="toggleLink is-open productView-description-accordion" data-collapsible>
+        <h3 class="productView-accordian-title">{{lang 'products.product_data_sheets'}}</h3>
+        <div>
+            <span>{{length product.custom_fields}}</span>
+            <svg><use href="#icon-add"></use></svg>
+        </div>
+    </a>
+    <div id="productViewDataSheets"  aria-hidden="false" class="toggle-content is-open description-accordian productView-description" data-event-type="product">
+        <dl>
+            {{#each product.custom_fields}}
+                {{#startsWith "pds_" name}}
+                    <dt><svg><use href="#icon-admin-link"></use></svg>{{name}}<a href={{{value}}}>{{{last (split value "/")}}}</a>
+                {{/startsWith}}
+            {{/each}}
+        </dl>
     </div>
 {{/if}}
 

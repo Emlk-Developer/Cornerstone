@@ -1,8 +1,9 @@
 {{#if settings.add_this.buttons}}
     {{assignVar 'encodedUrl' (encodeURI url)}}
     {{assignVar 'encodedTitle' (encodeURI head.title)}}
-    <div>
-        <ul class="socialLinks">
+    <div class="show-favourites">
+        <button onclick="toggleLink()">{{lang 'common.show_favourites'}}</button>
+        <ul class="socialLinks ">
             {{#each settings.add_this.buttons}}
                 <li class="socialLinks-item socialLinks-item--{{service}}">
                     {{#if service '===' 'facebook'}}
@@ -97,3 +98,10 @@
         allowTransparency="true">
     </iframe>
 {{/if}}
+
+<script>
+    const toggleLink = () => {
+        const socialLinks = document.querySelector('.socialLinks');
+        socialLinks.classList.toggle('show-links');
+    }
+</script>

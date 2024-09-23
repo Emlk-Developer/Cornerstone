@@ -253,15 +253,15 @@ export default class ProductDetailsBase {
         }
 
         // if stock view is on (CP settings)
-        if (viewModel.stock.$container.length && typeof data.stock === 'number') {
-            // if the stock container is hidden, show
-            viewModel.stock.$container.removeClass('u-hiddenVisually');
+        // if (viewModel.stock.$container.length && typeof data.stock === 'number') {
+        //     // if the stock container is hidden, show
+        //     viewModel.stock.$container.removeClass('u-hiddenVisually');
 
-            viewModel.stock.$input.text(data.stock);
-        } else {
-            viewModel.stock.$container.addClass('u-hiddenVisually');
-            viewModel.stock.$input.text(data.stock);
-        }
+        //     viewModel.stock.$input.text(data.stock);
+        // } else {
+        //     viewModel.stock.$container.addClass('u-hiddenVisually');
+        //     viewModel.stock.$input.text(data.stock);
+        // }
 
         this.updateDefaultAttributesForOOS(data);
         this.updateWalletButtonsView(data);

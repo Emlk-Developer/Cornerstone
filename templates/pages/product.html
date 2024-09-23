@@ -19,6 +19,7 @@ product:
         {{> components/common/alert/alert-info message}}
     {{/each}}
 
+    
     <div>
         {{> components/products/product-view}}
 
@@ -31,8 +32,9 @@ product:
         {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
             {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
         {{/all}}
-
+        {{#if theme_settings.show_data}}
         {{> components/products/tabs}}
+        {{/if}}
     </div>
 
     {{> components/products/schema}}

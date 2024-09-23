@@ -92,6 +92,8 @@ export default class ProductDetails extends ProductDetailsBase {
             }
         });
 
+        this.createStickyCartBtn();
+
         // Update product attributes. Also update the initial view in case items are oos
         // or have default variant properties that change the view
         if ((isEmpty(productAttributesData) || hasDefaultOptions) && hasOptions) {
@@ -232,6 +234,39 @@ export default class ProductDetails extends ProductDetailsBase {
                 card.attr('data-product-variant', productVariant);
             }
         }
+    }
+
+    createStickyCartBtn() {
+        $(window).on('scroll load resize', () => {
+            const addToCartBtn = document.querySelector('[id^="form-action-addToCart"]');
+            const price = document.querySelector('[data-product-price-without-tax]');
+            
+            if (addToCartBtn) {
+                const addToCartBtnWrapper = addToCartBtn.parentNode;
+                const headerHeight = document.querySelector('.header').clientHeight;
+ 
+                if ($(window).width() < 801) {
+                    let elementOffset = addToCartBtnWrapper.offsetTop;
+                    const scrollTop = $(window).scrollTop();
+                    const distanceFromTop = elementOffset - scrollTop + headerHeight;
+                    const fixedBreakPoint = distanceFromTop < headerHeight ? 'true' : 'false';
+ 
+                    if (fixedBreakPoint === 'true') {
+                        addToCartBtn.classList.add('is-sticky');
+                        price.classList.add('is-sticky');
+                        addToCartBtnWrapper.classList.add('button-sticky');
+                    } else if (fixedBreakPoint === 'false') {
+                        addToCartBtn.classList.remove('is-sticky');
+                        price.classList.remove('is-sticky');
+                        addToCartBtnWrapper.classList.remove('button-sticky');
+                        elementOffset += addToCartBtn.clientHeight;
+                    }
+                } else {
+                    addToCartBtn.classList.remove('is-sticky');
+                    addToCartBtnWrapper.classList.remove('button-sticky');
+                }
+            }
+        });
     }
 
     /**
