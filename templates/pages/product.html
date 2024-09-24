@@ -41,7 +41,7 @@ product:
     {{/each}}
 
     
-    <div>
+    <div class="pdp-container">
         {{> components/products/product-view}}
 
         {{{region name="product_below_content"}}}
@@ -60,4 +60,4 @@ product:
 
     {{> components/products/schema}}
 {{/partial}}
-{{> layout/base}}
+{{> layout/base includeCustomContainer=true}}
